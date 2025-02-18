@@ -32,6 +32,7 @@
             Label label3;
             Label label2;
             Button about;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.passwordLabel = new Label();
             this.fileDropArea = new Panel();
             this.remove = new Button();
@@ -76,6 +77,17 @@
             label2.TabIndex = 0;
             label2.Text = "Drop the PDF file here";
             label2.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // about
+            // 
+            about.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            about.Location = new Point(521, 323);
+            about.Name = "about";
+            about.Size = new Size(75, 23);
+            about.TabIndex = 8;
+            about.Text = "About...";
+            about.UseVisualStyleBackColor = true;
+            about.Click += this.OnAboutClick;
             // 
             // passwordLabel
             // 
@@ -136,17 +148,6 @@
             this.filePath.Text = "< No file selected >";
             this.filePath.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // about
-            // 
-            about.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            about.Location = new Point(521, 323);
-            about.Name = "about";
-            about.Size = new Size(75, 23);
-            about.TabIndex = 8;
-            about.Text = "About...";
-            about.UseVisualStyleBackColor = true;
-            about.Click += this.OnAboutClick;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new SizeF(7F, 15F);
@@ -160,6 +161,7 @@
             this.Controls.Add(this.remove);
             this.Controls.Add(this.filePath);
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.Icon = (Icon)resources.GetObject("$this.Icon");
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";
