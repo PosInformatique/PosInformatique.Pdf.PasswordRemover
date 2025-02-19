@@ -192,6 +192,5 @@
         private Label passwordLabel;
         private Panel fileDropArea;
         private Label filePath;
-        private Button exit;
     }
 }
