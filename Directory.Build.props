@@ -4,10 +4,11 @@
   <PropertyGroup>
     <Authors>Gilles TOURREAU</Authors>
     <Company>P.O.S Informatique</Company>
-    <Product>P.O.S Informatique</Product>
+    <Product>PDF Password Remover</Product>
     <Copyright>Copyright (c) P.O.S Informatique. All rights reserved.</Copyright>
     <RepositoryUrl>https://github.com/PosInformatique/PosInformatique.Pdf.PasswordRemover</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <AssemblyTitle>$(Product) by $(Company)</AssemblyTitle>
 
     <!-- Enable the last version of C# -->
     <LangVersion>latest</LangVersion>
