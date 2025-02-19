@@ -34,7 +34,7 @@ namespace PosInformatique.Pdf.PasswordRemover.WinForms
                 return;
             }
 
-            this.ShowInformation("The password has been removed successful.");
+            this.ShowInformation("The password has been removed successfully.");
             this.removePasswordGroup.SetVisible(false);
             this.filePath.Text = this.noFileSelectedText;
         }
