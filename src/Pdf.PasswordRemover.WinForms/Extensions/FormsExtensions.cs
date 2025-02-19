@@ -6,7 +6,7 @@
 
 namespace PosInformatique.Pdf.PasswordRemover.WinForms
 {
-    public static class FormsExtensions
+    internal static class FormsExtensions
     {
         public static void ShowError(this Form form, string message)
         {

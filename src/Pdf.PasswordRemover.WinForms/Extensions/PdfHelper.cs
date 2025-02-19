@@ -10,7 +10,7 @@ namespace PosInformatique.Pdf
     using PdfSharp.Pdf.IO;
     using PdfSharp.Pdf.Security;
 
-    public static class PdfHelper
+    internal static class PdfHelper
     {
         public static bool IsPasswordProtected(string fileName)
         {
