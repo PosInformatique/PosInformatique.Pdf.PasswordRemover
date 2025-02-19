@@ -32,6 +32,7 @@
             Label label3;
             Label label2;
             Button about;
+            Button exit;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.passwordLabel = new Label();
             this.fileDropArea = new Panel();
@@ -42,6 +43,7 @@
             label3 = new Label();
             label2 = new Label();
             about = new Button();
+            exit = new Button();
             this.fileDropArea.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -81,11 +83,11 @@
             // about
             // 
             about.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            about.Location = new Point(521, 323);
+            about.Location = new Point(521, 293);
             about.Name = "about";
             about.Size = new Size(75, 23);
             about.TabIndex = 8;
-            about.Text = "About...";
+            about.Text = "&About...";
             about.UseVisualStyleBackColor = true;
             about.Click += this.OnAboutClick;
             // 
@@ -148,11 +150,22 @@
             this.filePath.Text = "< No file selected >";
             this.filePath.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // exit
+            // 
+            exit.Location = new Point(521, 323);
+            exit.Name = "exit";
+            exit.Size = new Size(75, 23);
+            exit.TabIndex = 9;
+            exit.Text = "&Exit";
+            exit.UseVisualStyleBackColor = true;
+            exit.Click += this.OnExitClick;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new SizeF(7F, 15F);
             this.AutoScaleMode = AutoScaleMode.Font;
             this.ClientSize = new Size(608, 358);
+            this.Controls.Add(exit);
             this.Controls.Add(about);
             this.Controls.Add(label3);
             this.Controls.Add(this.fileDropArea);
@@ -179,5 +192,6 @@
         private Label passwordLabel;
         private Panel fileDropArea;
         private Label filePath;
+        private Button exit;
     }
 }

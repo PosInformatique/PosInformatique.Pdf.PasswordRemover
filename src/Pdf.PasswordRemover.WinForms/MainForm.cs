@@ -130,5 +130,10 @@ namespace PosInformatique.Pdf.PasswordRemover.WinForms
         {
             AboutForm.Show(this);
         }
+
+        private void OnExitClick(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
