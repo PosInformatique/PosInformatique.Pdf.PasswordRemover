@@ -55,7 +55,7 @@
             selectFile.Size = new Size(378, 23);
             selectFile.TabIndex = 1;
             selectFile.TabStop = true;
-            selectFile.Text = "Or clic here to select the file";
+            selectFile.Text = "Or click here to select a file.";
             selectFile.TextAlign = ContentAlignment.MiddleCenter;
             selectFile.LinkClicked += this.OnSelectFileLinkClicked;
             // 
