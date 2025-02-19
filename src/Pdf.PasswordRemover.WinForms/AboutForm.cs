@@ -7,7 +7,7 @@
 namespace PosInformatique.Pdf.PasswordRemover.WinForms
 {
     using System.Diagnostics;
-    using System.Reflection;
+    using Semver;
 
     internal partial class AboutForm : Form
     {
@@ -15,9 +15,10 @@ namespace PosInformatique.Pdf.PasswordRemover.WinForms
         {
             this.InitializeComponent();
 
-            var versionAttribute = this.GetType().Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>();
+            var informationalVersion = this.GetType().Assembly.GetInformationalVersion();
+            var semVerVersion = SemVersion.Parse(informationalVersion);
 
-            this.version.Text = string.Format(this.version.Text, versionAttribute!.InformationalVersion);
+            this.version.Text = string.Format(this.version.Text, semVerVersion.WithoutMetadata().ToString());
         }
 
         public static new void Show(IWin32Window owner)

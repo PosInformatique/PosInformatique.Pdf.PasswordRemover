@@ -17,5 +17,12 @@ namespace PosInformatique.Pdf.PasswordRemover.WinForms
 
             return attribute.Value!;
         }
+
+        public static string GetInformationalVersion(this Assembly assembly)
+        {
+            var attribute = assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>();
+
+            return attribute!.InformationalVersion;
+        }
     }
 }
