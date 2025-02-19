@@ -28,7 +28,7 @@ jobs:
           dotnet-version: '8.x'
 
       - name: Build executable application
-        run: dotnet build --property:Configuration=Release --property:AssemblyVersion=${{ inputs.VersionPrefix }} --property:FileVersion=${{ inputs.VersionPrefix }} --property:AssemblyInformationalVersion=${{ inputs.VersionPrefix }}-${{ inputs.VersionSuffix }} "./src/Pdf.PasswordRemover.WinForms/Pdf.PasswordRemover.WinForms.csproj"
+        run: dotnet build --property:Configuration=Release --property:AssemblyVersion=${{ inputs.VersionPrefix }} --property:FileVersion=${{ inputs.VersionPrefix }} --property:InformationalVersion=${{ inputs.VersionPrefix }}-${{ inputs.VersionSuffix }} "./src/Pdf.PasswordRemover.WinForms/Pdf.PasswordRemover.WinForms.csproj"
 
       - name: Setup VS Dev Environment
         uses: seanmiddleditch/gha-setup-vsdevenv@v4
