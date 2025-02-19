@@ -18,6 +18,7 @@ jobs:
   build:
     env:
       SETUP_PROJECT_FILE: "./src/Pdf.PasswordRemover.WinForms.Setup/Pdf.PasswordRemover.WinForms.Setup.vdproj"
+      VERSION: ${{ inputs.VersionPrefix }}${{ inputs.VersionSuffix && '-' || '' }}${{ inputs.VersionSuffix }}
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
@@ -28,7 +29,7 @@ jobs:
           dotnet-version: '8.x'
 
       - name: Build executable application
-        run: dotnet build --property:Configuration=Release --property:AssemblyVersion=${{ inputs.VersionPrefix }} --property:FileVersion=${{ inputs.VersionPrefix }} --property:InformationalVersion=${{ inputs.VersionPrefix }}${{ inputs.VersionSuffix && '-' || '' }}${{ inputs.VersionSuffix }} "./src/Pdf.PasswordRemover.WinForms/Pdf.PasswordRemover.WinForms.csproj"
+        run: dotnet build --property:Configuration=Release --property:AssemblyVersion=${{ inputs.VersionPrefix }} --property:FileVersion=${{ inputs.VersionPrefix }} --property:InformationalVersion=${{ env.VERSION }} "./src/Pdf.PasswordRemover.WinForms/Pdf.PasswordRemover.WinForms.csproj"
 
       - name: Setup Visual Studio environment
         uses: seanmiddleditch/gha-setup-vsdevenv@v4
@@ -40,13 +41,13 @@ jobs:
           $content = Get-Content -Path $env:SETUP_PROJECT_FILE -Raw
 
           $content = $content -replace '"ProductVersion" = "8:.*?"', '"ProductVersion" = "8:${{ inputs.VersionPrefix }}"'
-          $content = $content -replace '"OutputFilename" = "8:Release\\\\PdfPasswordRemover.msi"', '"OutputFilename" = "8:Release\\PdfPasswordRemover_${{ inputs.VersionPrefix }}${{ inputs.VersionSuffix && '-' || '' }}${{ inputs.VersionSuffix }}.msi"'
+          $content = $content -replace '"OutputFilename" = "8:Release\\\\PdfPasswordRemover.msi"', '"OutputFilename" = "8:Release\\PdfPasswordRemover_${{ env.VERSION }}.msi"'
           $content = $content -replace '"ProductCode" = "8:{CB215E38-E864-48E0-851B-6B2B67958B42}"', ('"ProductCode" = "8:' + $newProductCode + '"')
 
           Set-Content -Path $env:SETUP_PROJECT_FILE -Value $content
 
           Write-Host "Version updated to '${{ inputs.VersionPrefix }}' in '$env:SETUP_PROJECT_FILE'"
-          Write-Host "OutputFilename property updated to 'Release\\PdfPasswordRemover_${{ inputs.VersionPrefix }}${{ inputs.VersionSuffix && '-' || '' }}${{ inputs.VersionSuffix }}.msi' in '$env:SETUP_PROJECT_FILE'"
+          Write-Host "OutputFilename property updated to 'Release\\PdfPasswordRemover_${{ env.VERSION }}.msi' in '$env:SETUP_PROJECT_FILE'"
           Write-Host "ProductCode property updated to '$newProductCode' in '$env:SETUP_PROJECT_FILE'"
       
       - name: Build MSI package
