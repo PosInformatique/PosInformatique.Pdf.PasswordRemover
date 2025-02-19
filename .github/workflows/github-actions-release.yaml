@@ -22,18 +22,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup .NET 8.x
+      - name: Setup .NET 8.x SDK
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.x'
 
-      - name: Build
+      - name: Build executable application
         run: dotnet build --property:Configuration=Release --property:AssemblyVersion=${{ inputs.VersionPrefix }} --property:FileVersion=${{ inputs.VersionPrefix }} --property:AssemblyInformationalVersion=${{ inputs.VersionPrefix }}-${{ inputs.VersionSuffix }} "./src/Pdf.PasswordRemover.WinForms/Pdf.PasswordRemover.WinForms.csproj"
 
       - name: Setup VS Dev Environment
         uses: seanmiddleditch/gha-setup-vsdevenv@v4
 
-      - name: Update .vdproj version and output file name
+      - name: Update the .vdproj file
         shell: pwsh
         run: |
           $newProductCode = [System.Guid]::NewGuid().ToString("B").ToUpper()
@@ -49,10 +49,10 @@ jobs:
           Write-Host "OutputFilename property updated to 'Release\\PdfPasswordRemover_${{ inputs.VersionPrefix }}-${{ inputs.VersionSuffix }}.msi' in '$env:SETUP_PROJECT_FILE'"
           Write-Host "ProductCode property updated to '$newProductCode' in '$env:SETUP_PROJECT_FILE'"
       
-      - name: Build
+      - name: Build MSI package
         run: devenv "${{ env.SETUP_PROJECT_FILE }}" /Build "Release"
 
-      - name: Upload build artifacts
+      - name: Upload MSI package
         uses: actions/upload-artifact@v4
         with:
           name: installer
