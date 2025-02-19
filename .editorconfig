@@ -1,4 +1,8 @@
-﻿[*.cs]
+﻿[*.yaml]
+indent_size = 2
+tab_width = 2
+
+[*.cs]
 
 # StyleCop
 
