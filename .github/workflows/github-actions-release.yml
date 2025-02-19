@@ -26,6 +26,6 @@ jobs:
           dotnet-version: '8.x'
       
       - name: Build
-        run: devenv.com 
+        run: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\devenv.exe 
           "src/Pdf.PasswordRemover.WinForms.Setup/Pdf.PasswordRemover.WinForms.Setup.vdproj"
-          /rebuild "Release|x64"
+          /Build "Release"
