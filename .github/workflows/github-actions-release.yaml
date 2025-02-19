@@ -33,13 +33,15 @@ jobs:
       - name: Setup VS Dev Environment
         uses: seanmiddleditch/gha-setup-vsdevenv@v4
 
-      - name: Update .vdproj version
+      - name: Update .vdproj version and output file name
         shell: pwsh
         run: |
           $content = Get-Content -Path $env:SETUP_PROJECT_FILE -Raw
-          $updatedContent = $content -replace '"ProductVersion" = "8:.*?"', '"ProductVersion" = "8:' + ${{ inputs.VersionPrefix }} + '"'
 
-          Set-Content -Path $env:SETUP_PROJECT_FILE -Value $updatedContent
+          $content = $content -replace '"ProductVersion" = "8:.*?"', '"ProductVersion" = "8:${{ inputs.VersionPrefix }}"'
+          $content = $content -replace '"OutputFilename" = "8:Release\\\\PdfPasswordRemover.msi"', '"OutputFilename" = "8:Release\\PdfPasswordRemover_${{ inputs.VersionPrefix }}-${{ inputs.VersionSuffix }}.msi"'
+
+          Set-Content -Path $env:SETUP_PROJECT_FILE -Value $content
 
           Write-Host "Version updated to ${{ inputs.VersionPrefix }} in $env:SETUP_PROJECT_FILE"
       
