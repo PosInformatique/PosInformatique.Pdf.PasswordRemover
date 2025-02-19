@@ -43,10 +43,11 @@ jobs:
 
           Set-Content -Path $env:SETUP_PROJECT_FILE -Value $content
 
-          Write-Host "Version updated to ${{ inputs.VersionPrefix }} in $env:SETUP_PROJECT_FILE"
+          Write-Host "Version updated to '${{ inputs.VersionPrefix }}' in '$env:SETUP_PROJECT_FILE'"
+          Write-Host "OutputFilename property updated to 'Release\\PdfPasswordRemover_${{ inputs.VersionPrefix }}-${{ inputs.VersionSuffix }}.msi' in '$env:SETUP_PROJECT_FILE'"
       
       - name: Build
-        run: devenv "%SETUP_PROJECT_FILE%" /Build "Release"
+        run: devenv "${{ env.SETUP_PROJECT_FILE }}" /Build "Release"
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
