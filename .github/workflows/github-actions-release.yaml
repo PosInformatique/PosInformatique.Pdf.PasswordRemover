@@ -30,7 +30,7 @@ jobs:
       - name: Build executable application
         run: dotnet build --property:Configuration=Release --property:AssemblyVersion=${{ inputs.VersionPrefix }} --property:FileVersion=${{ inputs.VersionPrefix }} --property:InformationalVersion=${{ inputs.VersionPrefix }}-${{ inputs.VersionSuffix }} "./src/Pdf.PasswordRemover.WinForms/Pdf.PasswordRemover.WinForms.csproj"
 
-      - name: Setup VS Dev Environment
+      - name: Setup Visual Studio environment
         uses: seanmiddleditch/gha-setup-vsdevenv@v4
 
       - name: Update the .vdproj file
