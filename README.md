@@ -2,7 +2,7 @@
 
 A simple and efficient application to remove passwords from protected PDF files.
 
-You can download the latest version of the application from the [Releases](./releases) page.
+You can download the latest version of the application from the [Releases](https://github.com/PosInformatique/PosInformatique.Pdf.PasswordRemover/releases) page.
 
 ## Features
 
